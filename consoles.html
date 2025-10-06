@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consoles - GameHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/css2.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .consoles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .console-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .console-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .console-image {
+            height: 200px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .console-image img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        
+        .console-info {
+            padding: 1.5rem;
+        }
+        
+        .console-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .console-specs {
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .console-specs p {
+            margin: 0.3rem 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .console-specs span:first-child {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .console-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1rem;
+            margin-left: 0.5rem;
+        }
+        
+        .compare-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .compare-section {
+            background: #f9f9f9;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .compare-table th, .compare-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .compare-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 500;
+        }
+        
+        .compare-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .spec-value {
+            font-weight: 500;
+        }
+        
+        .spec-difference {
+            color: var(--primary);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-gamepad"></i> GameHub
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="consoles.html" class="active">Consoles</a></li>
+                <li><a href="accessories.html">Accessories</a></li>
+                <li><a href="new-releases.html">New Releases</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart.html" class="cart-link"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Gaming Consoles</h1>
+            <p>Discover the latest gaming consoles and find your perfect gaming setup</p>
+        </div>
+    </section>
+
+    <!-- Consoles Section -->
+    <section class="consoles-section">
+        <div class="container">
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="brand">Brand:</label>
+                    <select id="brand">
+                        <option value="all">All Brands</option>
+                        <option value="sony">Sony</option>
+                        <option value="microsoft">Microsoft</option>
+                        <option value="nintendo">Nintendo</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="price-range">Price Range:</label>
+                    <select id="price-range">
+                        <option value="all">All Prices</option>
+                        <option value="0-299">Under $300</option>
+                        <option value="300-499">$300 - $500</option>
+                        <option value="500">$500+</option>
+                    </select>
+                </div>
+                <button class="btn compare-btn" id="compareBtn">Compare Selected (0)</button>
+            </div>
+
+            <div class="consoles-grid">
+                <!-- Console Card 1 -->
+                <div class="console-card">
+                    <div class="console-image">
+                        <img src="https://via.placeholder.com/300x200" alt="PlayStation 5">
+                    </div>
+                    <div class="console-info">
+                        <h3>PlayStation 5</h3>
+                        <div class="console-specs">
+                            <p><span>CPU:</span> <span>3.5GHz, 8-core AMD Zen 2</span></p>
+                            <p><span>GPU:</span> <span>10.3 TFLOPS, 36 CUs</span></p>
+                            <p><span>Memory:</span> <span>16GB GDDR6</span></p>
+                            <p><span>Storage:</span> <span>825GB NVMe SSD</span></p>
+                        </div>
+                        <div class="console-price">
+                            <div>
+                                <span class="price">$499.99</span>
+                                <span class="old-price">$549.99</span>
+                            </div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                        <div class="compare-checkbox">
+                            <input type="checkbox" id="compare1" class="compare-check">
+                            <label for="compare1">Add to compare</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Console Card 2 -->
+                <div class="console-card">
+                    <div class="console-image">
+                        <img src="https://via.placeholder.com/300x200" alt="Xbox Series X">
+                    </div>
+                    <div class="console-info">
+                        <h3>Xbox Series X</h3>
+                        <div class="console-specs">
+                            <p><span>CPU:</span> <span>3.8GHz, 8-core AMD Zen 2</span></p>
+                            <p><span>GPU:</span> <span>12.1 TFLOPS, 52 CUs</span></p>
+                            <p><span>Memory:</span> <span>16GB GDDR6</span></p>
+                            <p><span>Storage:</span> <span>1TB NVMe SSD</span></p>
+                        </div>
+                        <div class="console-price">
+                            <div>
+                                <span class="price">$499.99</span>
+                            </div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                        <div class="compare-checkbox">
+                            <input type="checkbox" id="compare2" class="compare-check">
+                            <label for="compare2">Add to compare</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Console Card 3 -->
+                <div class="console-card">
+                    <div class="console-image">
+                        <img src="https://via.placeholder.com/300x200" alt="Nintendo Switch OLED">
+                    </div>
+                    <div class="console-info">
+                        <h3>Nintendo Switch OLED</h3>
+                        <div class="console-specs">
+                            <p><span>Display:</span> <span>7-inch OLED</span></p>
+                            <p><span>Storage:</span> <span>64GB (expandable)</span></p>
+                            <p><span>Battery Life:</span> <span>4.5-9 hours</span></p>
+                            <p><span>Resolution:</span> <span>1280x720 (handheld)</span></p>
+                        </div>
+                        <div class="console-price">
+                            <div>
+                                <span class="price">$349.99</span>
+                            </div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                        <div class="compare-checkbox">
+                            <input type="checkbox" id="compare3" class="compare-check">
+                            <label for="compare3">Add to compare</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compare Section (Hidden by default) -->
+            <div class="compare-section" id="compareSection" style="display: none;">
+                <h2>Compare Consoles</h2>
+                <div class="compare-table-container">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Specification</th>
+                                <th id="compareName1">-</th>
+                                <th id="compareName2">-</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Price</td>
+                                <td id="comparePrice1">-</td>
+                                <td id="comparePrice2">-</td>
+                            </tr>
+                            <tr>
+                                <td>Processor</td>
+                                <td id="compareCpu1">-</td>
+                                <td id="compareCpu2">-</td>
+                            </tr>
+                            <tr>
+                                <td>Graphics</td>
+                                <td id="compareGpu1">-</td>
+                                <td id="compareGpu2">-</td>
+                            </tr>
+                            <tr>
+                                <td>Memory</td>
+                                <td id="compareMemory1">-</td>
+                                <td id="compareMemory2">-</td>
+                            </tr>
+                            <tr>
+                                <td>Storage</td>
+                                <td id="compareStorage1">-</td>
+                                <td id="compareStorage2">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn" id="clearCompare">Clear Comparison</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>Stay Updated</h2>
+            <p>Subscribe to get notified about console restocks and exclusive offers</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About GameHub</h3>
+                    <p>Your one-stop destination for all gaming needs. We offer the latest games, consoles, and accessories.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="consoles.html">Consoles</a></li>
+                        <li><a href="accessories.html">Accessories</a></li>
+                        <li><a href="new-releases.html">New Releases</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="shipping.html">Shipping Policy</a></li>
+                        <li><a href="returns.html">Returns & Refunds</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="login.html">Login / Register</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                    <div class="contact-info" style="margin-top: 15px;">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Gaming Street, Los Angeles, CA 90001</p>
+                        <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> support@gamehub.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GameHub. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+        
+        // Console data for comparison
+        const consolesData = {
+            'compare1': {
+                name: 'PlayStation 5',
+                price: '$499.99',
+                cpu: '3.5GHz, 8-core AMD Zen 2',
+                gpu: '10.3 TFLOPS, 36 CUs',
+                memory: '16GB GDDR6',
+                storage: '825GB NVMe SSD'
+            },
+            'compare2': {
+                name: 'Xbox Series X',
+                price: '$499.99',
+                cpu: '3.8GHz, 8-core AMD Zen 2',
+                gpu: '12.1 TFLOPS, 52 CUs',
+                memory: '16GB GDDR6',
+                storage: '1TB NVMe SSD'
+            },
+            'compare3': {
+                name: 'Nintendo Switch OLED',
+                price: '$349.99',
+                cpu: 'Custom NVIDIA Tegra',
+                gpu: 'Custom NVIDIA',
+                memory: '4GB',
+                storage: '64GB (expandable)'
+            }
+        };
+        
+        compareCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const consoleId = this.id;
+                
+                if (this.checked) {
+                    if (selectedConsoles.length < 2) {
+                        selectedConsoles.push(consoleId);
+                    } else {
+                        this.checked = false;
+                        alert('You can compare up to 2 consoles at a time.');
+                        return;
+                    }
+                } else {
+                    selectedConsoles = selectedConsoles.filter(id => id !== consoleId);
+                }
+                
+                updateCompareButton();
+                
+                if (selectedConsoles.length === 2) {
+                    updateComparisonTable();
+                    compareSection.style.display = 'block';
+                } else {
+                    compareSection.style.display = 'none';
+                }
+            });
+        });
+        
+        function updateCompareButton() {
+            compareBtn.textContent = `Compare Selected (${selectedConsoles.length})`;
+            compareBtn.disabled = selectedConsoles.length < 2;
+        }
+        
+        function updateComparisonTable() {
+            if (selectedConsoles.length !== 2) return;
+            
+            const console1 = consolesData[selectedConsoles[0]];
+            const console2 = consolesData[selectedConsoles[1]];
+            
+            // Update names
+            document.getElementById('compareName1').textContent = console1.name;
+            document.getElementById('compareName2').textContent = console2.name;
+            
+            // Update specs
+            document.getElementById('comparePrice1').textContent = console1.price;
+            document.getElementById('comparePrice2').textContent = console2.price;
+            
+            document.getElementById('compareCpu1').textContent = console1.cpu;
+            document.getElementById('compareCpu2').textContent = console2.cpu;
+            
+            document.getElementById('compareGpu1').textContent = console1.gpu;
+            document.getElementById('compareGpu2').textContent = console2.gpu;
+            
+            document.getElementById('compareMemory1').textContent = console1.memory;
+            document.getElementById('compareMemory2').textContent = console2.memory;
+            
+            document.getElementById('compareStorage1').textContent = console1.storage;
+            document.getElementById('compareStorage2').textContent = console2.storage;
+        }
+        
+        clearCompareBtn.addEventListener('click', function() {
+            // Uncheck all checkboxes
+            compareCheckboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            
+            // Reset selected consoles
+            selectedConsoles = [];
+            
+            // Update UI
+            updateCompareButton();
+            compareSection.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

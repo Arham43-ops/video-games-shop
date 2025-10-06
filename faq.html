@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs - GameHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/css2.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .page-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('./images/faq-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        .search-container {
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        
+        .search-container input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-size: 1rem;
+            padding-left: 3rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-container input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .search-container i {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7f8c8d;
+        }
+        
+        .faq-category {
+            margin-bottom: 3rem;
+        }
+        
+        .faq-category h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f1f1f1;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+            background: none;
+            border: none;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: #f9f9f9;
+        }
+        
+        .faq-question:after {
+            content: '\f078';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-question.active:after {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #f9f9f9;
+        }
+        
+        .faq-answer-content {
+            padding: 0 1.5rem 1.5rem;
+            line-height: 1.6;
+            color: #2c3e50;
+        }
+        
+        .contact-support {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .contact-support h3 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .contact-support p {
+            margin-bottom: 1.5rem;
+            color: #7f8c8d;
+        }
+        
+        .btn-contact {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .btn-contact:hover {
+            background: #2980b9;
+        }
+        
+        @media (max-width: 768px) {
+            .faq-container {
+                padding: 0 1rem;
+            }
+            
+            .faq-question {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+            
+            .faq-answer-content {
+                padding: 0 1rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-gamepad"></i> GameHub
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="consoles.html">Consoles</a></li>
+                <li><a href="accessories.html">Accessories</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to common questions about GameHub</p>
+        </div>
+    </section>
+
+    <!-- FAQ Content -->
+    <section class="faq-container">
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="faqSearch" placeholder="Search for questions or keywords...">
+        </div>
+        
+        <div class="faq-category">
+            <h2>Account & Registration</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question">How do I create a GameHub account?</button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Creating a GameHub account is easy! Click on the "Sign Up" button in the top right corner of the page, fill in your details, and follow the verification process. You'll need to provide a valid email address and create a secure password.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">I forgot my password. How can I reset it?</button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Click on the "Forgot Password" link on the login page. Enter the email address associated with your account, and we'll send you instructions to reset your password. Make sure to check your spam folder if you don't see our email.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">How do I update my account information?</button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Log in to your account and go to "Account Settings." From there, you can update your personal information, change your password, and manage your communication preferences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-category">
+            <h2>Orders & Payments</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question">What payment methods do you accept?</button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>We accept various payment methods including:</p>
+                        <ul>
+                            <li>Credit/Debit Cards (Visa, MasterCard, American Express, Discover)</li>
+                            <li>PayPal</li>
+                            <li>GameHub Gift Cards</li>
+                            <li>Cryptocurrency (Bitcoin, Ethereum)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">How can I track my order?</button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Once your order has shipped, you'll receive a confirmation email with a tracking number. You can track your order by clicking the tracking link in the email or by logging into your account and viewing your order history.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">Can I cancel or modify my order?</button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>You can cancel or modify your order within 1 hour of placing it, as long as it hasn't been processed for shipping. After that, please contact our customer support team immediately, and we'll do our best to assist you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-category">
+            <h2>Shipping & Delivery</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question">What are your shipping options?</button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>We offer several shipping options:</p>
+                        <ul>
+                            <li><strong>Standard Shipping:</strong> 3-5 business days ($4.99)</li>
+                            <li><strong>Expedited Shipping:</strong> 2-3 business days ($9.99)</li>
+                            <li><strong>Next Day Shipping:</strong> 1 business day ($19.99)</li>
+                            <li><strong>Free Shipping:</strong> On orders over $49 (5-7 business days)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">Do you ship internationally?</button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Yes, we ship to most countries worldwide. International shipping rates and delivery times vary by destination. You'll see the available shipping options and costs at checkout before completing your purchase.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">What should I do if my order is damaged or incorrect?</button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Please contact our customer support team within 7 days of receiving your order. Include your order number, photos of the damaged/incorrect items, and a brief description of the issue. We'll work quickly to resolve the problem.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-category">
+            <h2>Returns & Refunds</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question">What is your return policy?</button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>We accept returns within 30 days of delivery for most unopened, unused items in their original packaging. Digital products, including game codes and digital downloads, are generally not eligible for return unless required by law.</p>
+                        <p>To start a return, please contact our customer support team with your order details.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">How long does it take to process a refund?</button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Once we receive your returned item, we'll process your refund within 3-5 business days. The time it takes for the refund to appear in your account depends on your payment method:</p>
+                        <ul>
+                            <li>Credit/Debit Cards: 5-10 business days</li>
+                            <li>PayPal: 3-5 business days</li>
+                            <li>Bank Transfers: 7-14 business days</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-support">
+            <h3>Still have questions?</h3>
+            <p>Our support team is here to help you with any other questions you may have.</p>
+            <a href="contact.html" class="btn-contact">Contact Support</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About GameHub</h3>
+                    <p>Your one-stop destination for all gaming needs. We offer the latest games, consoles, and accessories.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="consoles.html">Consoles</a></li>
+                        <li><a href="accessories.html">Accessories</a></li>
+                        <li><a href="new-releases.html">New Releases</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="shipping.html">Shipping Policy</a></li>
+                        <li><a href="returns.html">Returns & Refunds</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GameHub. All Rights Reserved. <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms & Conditions</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // FAQ Toggle Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const answer = this.nextElementSibling;
+                    
+                    if (answer.style.maxHeight) {
+                        answer.style.maxHeight = null;
+                    } else {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    }
+                });
+            });
+            
+            // FAQ Search Functionality
+            const searchInput = document.getElementById('faqSearch');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const faqItems = document.querySelectorAll('.faq-item');
+                
+                faqItems.forEach(item => {
+                    const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                    const answer = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+                    
+                    if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                        item.style.display = 'block';
+                        
+                        // Expand matching questions
+                        const questionBtn = item.querySelector('.faq-question');
+                        const answerEl = item.querySelector('.faq-answer');
+                        
+                        if (!questionBtn.classList.contains('active')) {
+                            questionBtn.classList.add('active');
+                            answerEl.style.maxHeight = answerEl.scrollHeight + 'px';
+                        }
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessories - GameHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/css2.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .accessories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .accessory-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .accessory-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .accessory-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 1;
+        }
+        
+        .accessory-image {
+            height: 200px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            position: relative;
+        }
+        
+        .accessory-image img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        
+        .accessory-info {
+            padding: 1.5rem;
+        }
+        
+        .accessory-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .accessory-category {
+            display: inline-block;
+            background: #f0f0f0;
+            color: #666;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .accessory-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0.8rem 0;
+            min-height: 60px;
+        }
+        
+        .accessory-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1rem;
+            margin-left: 0.5rem;
+        }
+        
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+            align-items: center;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .filter-group label {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .filter-group select {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 3rem 0;
+        }
+        
+        .pagination a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination a:hover,
+        .pagination a.active {
+            background: var(--primary);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-gamepad"></i> GameHub
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="consoles.html">Consoles</a></li>
+                <li><a href="accessories.html" class="active">Accessories</a></li>
+                <li><a href="new-releases.html">New Releases</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart.html" class="cart-link"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Gaming Accessories</h1>
+            <p>Enhance your gaming experience with our premium accessories</p>
+        </div>
+    </section>
+
+    <!-- Accessories Section -->
+    <section class="accessories-section">
+        <div class="container">
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="category">Category:</label>
+                    <select id="category">
+                        <option value="all">All Categories</option>
+                        <option value="controllers">Controllers</option>
+                        <option value="headsets">Headsets</option>
+                        <option value="keyboards">Keyboards</option>
+                        <option value="mice">Mice</option>
+                        <option value="chairs">Gaming Chairs</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="compatibility">Compatibility:</label>
+                    <select id="compatibility">
+                        <option value="all">All Platforms</option>
+                        <option value="pc">PC</option>
+                        <option value="playstation">PlayStation</option>
+                        <option value="xbox">Xbox</option>
+                        <option value="nintendo">Nintendo</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sort">Sort By:</label>
+                    <select id="sort">
+                        <option value="popular">Most Popular</option>
+                        <option value="newest">Newest</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="accessories-grid">
+                <!-- Accessory Card 1 -->
+                <div class="accessory-card">
+                    <div class="accessory-badge">Bestseller</div>
+                    <div class="accessory-image">
+                        <img src="https://via.placeholder.com/300x200" alt="Wireless Gaming Headset">
+                    </div>
+                    <div class="accessory-info">
+                        <span class="accessory-category">Headsets</span>
+                        <h3>Pro Gaming Headset X7</h3>
+                        <p class="accessory-description">Immersive 7.1 surround sound with noise cancellation for the ultimate gaming experience.</p>
+                        <div class="accessory-price">
+                            <span class="price">$129.99 <span class="old-price">$159.99</span></span>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessory Card 2 -->
+                <div class="accessory-card">
+                    <div class="accessory-badge">New</div>
+                    <div class="accessory-image">
+                        <img src="https://via.placeholder.com/300x200" alt="Wireless Controller">
+                    </div>
+                    <div class="accessory-info">
+                        <span class="accessory-category">Controllers</span>
+                        <h3>Elite Wireless Controller</h3>
+                        <p class="accessory-description">Customizable controller with adjustable tension thumbsticks and hair trigger locks.</p>
+                        <div class="accessory-price">
+                            <span class="price">$179.99</span>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessory Card 3 -->
+                <div class="accessory-card">
+                    <div class="accessory-image">
+                        <img src="https://via.placeholder.com/300x200" alt="Mechanical Keyboard">
+                    </div>
+                    <div class="accessory-info">
+                        <span class="accessory-category">Keyboards</span>
+                        <h3>Mechanical Gaming Keyboard</h3>
+                        <p class="accessory-description">RGB backlit mechanical keyboard with customizable macro keys and wrist rest.</p>
+                        <div class="accessory-price">
+                            <span class="price">$89.99 <span class="old-price">$109.99</span></span>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessory Card 4 -->
+                <div class="accessory-card">
+                    <div class="accessory-image">
+                        <img src="https://via.placeholder.com/300x200" alt="Gaming Mouse">
+                    </div>
+                    <div class="accessory-info">
+                        <span class="accessory-category">Mice</span>
+                        <h3>Precision Gaming Mouse</h3>
+                        <p class="accessory-description">High-DPI gaming mouse with customizable buttons and RGB lighting.</p>
+                        <div class="accessory-price">
+                            <span class="price">$59.99</span>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessory Card 5 -->
+                <div class="accessory-card">
+                    <div class="accessory-badge">Sale</div>
+                    <div class="accessory-image">
+                        <img src="https://via.placeholder.com/300x200" alt="Gaming Chair">
+                    </div>
+                    <div class="accessory-info">
+                        <span class="accessory-category">Gaming Chairs</span>
+                        <h3>Pro Gaming Chair</h3>
+                        <p class="accessory-description">Ergonomic gaming chair with lumbar support and adjustable armrests.</p>
+                        <div class="accessory-price">
+                            <span class="price">$249.99 <span class="old-price">$299.99</span></span>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessory Card 6 -->
+                <div class="accessory-card">
+                    <div class="accessory-image">
+                        <img src="https://via.placeholder.com/300x200" alt="Controller Charging Station">
+                    </div>
+                    <div class="accessory-info">
+                        <span class="accessory-category">Accessories</span>
+                        <h3>Dual Controller Charger</h3>
+                        <p class="accessory-description">Charge two controllers simultaneously with this sleek charging station.</p>
+                        <div class="accessory-price">
+                            <span class="price">$34.99</span>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">Next <i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>Stay Updated</h2>
+            <p>Subscribe to get the latest deals and new arrivals</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About GameHub</h3>
+                    <p>Your one-stop destination for all gaming needs. We offer the latest games, consoles, and accessories.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="consoles.html">Consoles</a></li>
+                        <li><a href="accessories.html">Accessories</a></li>
+                        <li><a href="new-releases.html">New Releases</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="shipping.html">Shipping Policy</a></li>
+                        <li><a href="returns.html">Returns & Refunds</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="login.html">Login / Register</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                    <div class="contact-info" style="margin-top: 15px;">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Gaming Street, Los Angeles, CA 90001</p>
+                        <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> support@gamehub.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GameHub. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
