@@ -18,16 +18,15 @@ A modern, responsive e-commerce website for video games and gaming accessories. 
 
 ## 🚀 Pages
 
+- **Login** (`login.html`) - Login Page
+- **Register** (`register.html`) - Register Page
 - **Home** (`index.html`) - Hero section, featured games, and new releases
 - **Games** (`games.html`) - Complete game catalog with advanced filtering
-- **New Releases** (`new-releases.html`) - Latest game releases with modern design
-- **Accessories** (`accessories.html`) - Gaming gear, controllers, and accessories
 - **About** (`about.html`) - Company information and team details
 - **Contact** (`contact.html`) - Contact form and business information
 - **Cart** (`cart.html`) - Shopping cart with item management
 - **Checkout** (`checkout.html`) - Secure checkout process
 - **Thank You** (`thankyou.html`) - Order confirmation page
-- **Terms** (`terms.html`) - Terms and conditions
 
 ## 🛠️ Technologies Used
 
