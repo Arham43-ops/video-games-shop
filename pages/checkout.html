@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - GameHub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="../css/css2.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .checkout-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('../images/checkout_banner.png');
+            background-size: cover;
+            background-position: center;
+            height: 30vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .checkout-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+
+        .checkout-header {
+            grid-column: 1 / -1;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+
+        .checkout-form {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h3 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-section h3 i {
+            margin-right: 10px;
+            color: #6c5ce7;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2d3436;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #6c5ce7;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-outline {
+            background: white;
+            border: 1px solid #6c5ce7;
+            color: #6c5ce7;
+        }
+
+        .btn-outline:hover {
+            background: #f8f6ff;
+        }
+
+        .btn-primary {
+            background: #6c5ce7;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a4fcf;
+            transform: translateY(-2px);
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .checkout-summary {
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 8px;
+            height: fit-content;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding-top: 1rem;
+        }
+
+        .order-items {
+            margin: 1.5rem 0;
+        }
+
+        .order-item {
+            display: flex;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .order-item img {
+            width: 100px;
+            height: 50px;
+            margin-top: 1rem;
+            border-radius: 4px;
+            margin-right: 1rem;
+        }
+
+        .order-item-details {
+            flex: 1;
+        }
+
+        .order-item-title {
+            font-weight: 500;
+            margin: 0 0 0.3rem 0;
+        }
+
+        .order-item-price {
+            color: #6c5ce7;
+            font-weight: 600;
+        }
+
+        .payment-methods {
+            margin: 1.5rem 0;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-method:hover {
+            border-color: #6c5ce7;
+            background: #f8f6ff;
+        }
+
+        .payment-method input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .payment-icon {
+            margin-right: 10px;
+            color: #6c5ce7;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .form-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-gamepad"></i> GameHub
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="checkout-hero">
+        <div class="hero-content">
+            <h1>Secure Checkout</h1>
+            <p>Complete your purchase with confidence</p>
+        </div>
+    </section>
+
+    <!-- Checkout Content -->
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <h2><i class="fas fa-shopping-bag"></i> Order Summary</h2>
+        </div>
+
+        <div class="checkout-form">
+            <form id="checkoutForm">
+                <div class="form-section">
+                    <h3><i class="fas fa-user"></i> Contact Information</h3>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3><i class="fas fa-truck"></i> Shipping Information</h3>
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Street Address</label>
+                        <input type="text" id="address" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apartment">Apartment, suite, etc. (optional)</label>
+                        <input type="text" id="apartment" class="form-control">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country/Region</label>
+                            <select id="country" class="form-control" required>
+                                <option value="">Select a country</option>
+                                <option value="US">United States</option>
+                                <option value="CA">Canada</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="AU">Australia</option>
+                                <option value="JP">Japan</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <a href="cart.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i> Back to Cart
+                    </a>
+                    <a href="thanks.html" class="btn btn-primary">
+                        <i class="fas fa-lock"></i> Complete Order
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="checkout-summary">
+            <h3>Order Summary</h3>
+
+            <div class="order-items">
+                <div class="order-item">
+                    <img src="../images/dmc.png" alt="Game Cover">
+                    <div class="order-item-details">
+                        <h4 class="order-item-title">Devil may Cry</h4>
+                        <p>PlayStation 5</p>
+                        <div class="order-item-price">₹1,499</div>
+                    </div>
+                </div>
+
+                <div class="order-item">
+                    <img src="../images/gow_ragnarok.png" alt="Accessory">
+                    <div class="order-item-details">
+                        <h4 class="order-item-title">God Of War: Ragnarok</h4>
+                        <p>PlayStation 5</p>
+                        <div class="order-item-price">₹4,999</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-item">
+                <span>Subtotal</span>
+                <span>₹6,498</span>
+            </div>
+            <div class="summary-item">
+                <span>Shipping</span>
+                <span>Free</span>
+            </div>
+            <div class="summary-item">
+                <span>Estimated Tax</span>
+                <span>₹213.30</span>
+            </div>
+            <div class="summary-item">
+                <span>Total</span>
+                <span>₹6771.30</span>
+            </div>
+
+            <div style="margin-top: 1.5rem; font-size: 0.9rem; color: #666; text-align: center;">
+                <i class="fas fa-lock"></i> Secure Checkout
+                <p style="margin-top: 0.5rem;">Your payment information is encrypted and secure.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About GameHub</h3>
+                    <p>Your one-stop destination for all gaming needs. We offer the latest games, consoles, and
+                        accessories.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="contact-info" style="margin-top: 15px;">
+                        <p><i class="fas fa-map-marker-alt"></i> Random Address 123_bkl</p>
+                        <p><i class="fas fa-phone"></i> 2365789527</p>
+                        <p><i class="fas fa-envelope"></i> support@gamehub.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

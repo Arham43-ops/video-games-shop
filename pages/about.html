@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - GameHub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="../css/css2.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('../images/about_background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .about-content {
+            padding: -2rem 0 5rem 0;
+            margin-bottom: 5rem;
+            background: #f9f9f9;
+        }
+
+        .about-section {
+            margin-bottom: 4rem;
+        }
+
+        .about-section h2 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .about-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            margin-left: 5rem;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            width: 40%;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-image {
+            height: 300px;
+            background: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-member:hover .member-image img {
+            transform: scale(1.05);
+        }
+
+        .member-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .member-info h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .member-role {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .stats-section {
+            background: var(--primary);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .values-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .value-card h3 {
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        
+
+        @media (max-width: 768px) {
+            .about-hero {
+                height: 50vh;
+            }
+
+            .about-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-gamepad"></i> GameHub
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>Our Story</h1>
+            <p>Passionate about gaming, dedicated to gamers</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <div class="about-section"><br><br>
+                <h2>Welcome to GameHub</h2>
+                <p>Founded in 2015, GameHub started as a small gaming store with a big dream: to create the ultimate
+                    destination for gamers of all levels. What began as a passion project has grown into a thriving
+                    community of gaming enthusiasts, offering the latest games, consoles, and accessories.</p>
+                <p>At GameHub, we believe that gaming is more than just a hobby—it's a way to connect, compete, and
+                    create unforgettable experiences. Whether you're a casual player or a hardcore gamer, we've got
+                    something for everyone.</p>
+            </div>
+
+            <div class="about-section">
+                <h2>Our Mission</h2>
+                <p>Our mission is simple: to provide gamers with the best products, expert advice, and exceptional
+                    service. We carefully curate our selection to bring you the highest quality games and hardware from
+                    the most trusted brands in the industry.</p>
+                <p>We're committed to staying ahead of the curve, constantly updating our inventory with the latest
+                    releases and cutting-edge technology. Our team of gaming experts is always here to help you find
+                    exactly what you're looking for.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="about-content">
+        <div class="container">
+            <div class="about-section" id="team">
+                <h2>Meet Our CEO</h2>
+                <p>The passionate gamer behind GameHub</p>
+            </div>
+            <center>
+                    <!-- Team Member -->
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="../images/team_1.png" alt="Team Member">
+                        </div>
+                        <div class="member-info">
+                            <h3>Saif Shaikh</h3>
+                            <span class="member-role">Founder & CEO</span>
+                            <p>Gaming enthusiast with 10+ years of industry experience</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+            </center>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>Join Our Community</h2>
+            <p>Subscribe to stay updated on the latest gaming news and exclusive offers</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About GameHub</h3>
+                    <p>Your one-stop destination for all gaming needs. We offer the latest games, consoles, and
+                        accessories.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="contact-info" style="margin-top: 15px;">
+                        <p><i class="fas fa-map-marker-alt"></i> Random Address 123_bkl</p>
+                        <p><i class="fas fa-phone"></i> 2365789527</p>
+                        <p><i class="fas fa-envelope"></i> support@gamehub.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Add to cart functionality (if any add to cart buttons exist on this page)
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const cartCount = document.querySelector('.cart-count');
+        let count = 0;
+
+        if (addToCartButtons.length > 0) {
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    count++;
+                    cartCount.textContent = count;
+
+                    // Animation
+                    const originalText = button.textContent;
+                    button.textContent = 'Added!';
+                    button.style.backgroundColor = '#4CAF50';
+
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.backgroundColor = '';
+                    }, 1000);
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
